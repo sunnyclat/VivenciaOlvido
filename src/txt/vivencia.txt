@@ -1,0 +1,159 @@
+#INICIO/entramos en el pueblo y avistamos una taberna, la cual tiene una puerta poco peculiar de bronce/0
+<PUERTA-.
+
+#PUERTA/decidimos intentar abrir la puerta pero esta no abre/0
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<VOLVER-Nos retiramos y decidimos VOLVER al pueblo
+<MIRAR-Me pongo a MIRAR las estrellas
+
+#MIRAR/miro el cielo/0
+<-.
+<-.
+<-.
+
+#PATEAR/la taberna esta muy oscura y me corto con una astilla de la puerta, pero en la entrada encontramos ademas unas 'cizallas'/-10
+<AVANZAMOS-Nos adentramos en la oscuridad y AVANZAMOS
+<VOLVER-Decidimos VOLVER al pueblo
+<-.
+
+
+
+#VOLVER/volvemos al pueblo/0
+<CERCA-Observo a una CERCA que encuentro por alli
+<PATEAR-Nos arrepentimos y decidimos volver a PATEAR esa puerta
+<-.
+
+#CERCA/observo que hay una cerca y algo dentro pero para ello necesitaria unas CIZALLAS/0
+<ENTRO-Paso por la cerca y ENTRO
+<VOLVER-Nos arrepentimos y decidimos VOLVER al pueblo
+<-.
+
+#ENTRO/encontramos un 'bidon de gasolina'/0
+<PATEAR-Nos arrepentimos y decidimos volver a PATEAR esa puerta
+<VOLVEMOS-Nos arrepentimos y VOLVEMOS al pueblo
+<VOLVER-Nos arrepentimos y decidimos VOLVER al pueblo
+
+#AVANZAMOS/usamos una 'linterna'/0
+<ALUMBRAMOS-Apuntamos con la linterna y ALUMBRAMOS bien
+<VOLVER-Nos arrepentimos y decidimos VOLVER al pueblo
+<-.
+
+
+
+#IRME/me acobarde/0
+<PIENSO-PIENSO en lo que me pudo haber pasado
+<DUERMO-voy a ver si DUERMO en casa
+<-.
+
+
+#VUELVO/retorno a casa/0
+<POLLO-me voy a preparar una buena pata de POLLO
+<CAMA-me voy directamente a dormir a mi CAMA
+<-.
+
+
+#CAMINO/vuelvo a casa/0
+<SIGILO-me topo con algo misterioso y prefiero ir en modo SIGILO
+<SIENTO-prefiero quedarme quieto y ver donde me SIENTO
+<-.
+
+
+#CORRO/no llego a casa porque me canso/0
+<PARO-prefiero parar un poco asi que me tomo un respiro y PARO
+<DEDO-hago DEDO para ver si alguien me puede alcanzar a casa
+<-.
+
+#ALUMBRAMOS/vemos algo/0
+<ALUMBRO-ALUMBRO y encuentro un medikit
+<SIGO-SIGO alumbrando y caminando
+<PLAZA-salgo y me voy a la PLAZA del pueblo
+
+#ALUMBRO/me curo con el medikit/5
+<SIGO-SIGO y veo un pasillo
+<INVESTIGO-Entro a examinar e INVESTIGO mejor el cuarto
+<-.
+
+#INVESTIGO/veo unas cajas en el piso y encuentro una 'llave roja'/0
+<SIGO-SIGO y veo un pasillo
+<MIRO-MIRO mas el lugar
+<-.
+
+#SIGO/encuentro un pasillo/0
+<PUERTA BLANCA-Vemos una PUERTA BLANCA e intentamos abrirla
+<PASILLO-Continuamos por el PASILLO
+<VOLVER-Nos arrepentimos y decidimos VOLVER al pueblo
+
+#PASILLO/avanzo por el pasillo/0
+<INVESTIGO-vuelvo a la sala anterior al pasillo e INVESTIGO
+<COCINA-avanzo y este lugar que aparenta ser una COCINA
+<VOLVER-Nos arrepentimos y decidimos VOLVER al pueblo
+
+
+
+
+#PUERTA BLANCA/la puerta no abre, se necesita LLAVE ROJA/0
+<ENCIENDO-Logro abrir la puerta y ENCIENDO la luz
+<LINTERNA-Logro abrir la puerta y prefiero usar la LINTERNA
+<VOLVER-Nos arrepentimos y decidimos VOLVER al pueblo
+
+#ENCIENDO/sin querer toco un clavo y me lastimo/-5
+<VOLVER-Nos arrepentimos y decidimos VOLVER al pueblo
+<PASILLO-Continuamos por el PASILLO
+<BUSCO-.Me agacho y BUSCO algo de utilidad
+
+
+#VOLVEMOS/nos arrepentimos/0
+<DUERMO-voy a ver si DUERMO en casa
+<PIENSO-PIENSO en lo que me pudo haber pasado
+<-.
+
+#PIENSO/me pongo a pensar/0
+<-.
+<-.
+<-.
+
+
+#DUERMO/me pongo a dormir/0
+<-.
+<-.
+<-.
+
+
+#SIENTO/me siento/0
+<-.
+<-.
+<-.
+
+
+#SIGILO/me deslizo/0
+<-.
+<-.
+<-.
+
+#PARO/paro/0
+<-.
+<-.
+<-.
+
+
+#DEDO/hago dedo/0
+<-.
+<-.
+<-.
+
+
+#POLLO/como/10
+<PATEAR-Decido volver al pueblo y PATEAR la puerta de la taberna nuevamente
+<PLAZA-Decido ir a la PLAZA del pueblo
+<-.
+
+#PLAZA/vamos a la plaza del pueblo/0
+<-.
+<-.
+<-.
+
+
+#CAMA/me acuesto/0
+<-.
+<-.
+<-.
