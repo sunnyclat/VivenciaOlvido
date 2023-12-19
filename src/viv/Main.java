@@ -19,24 +19,20 @@ public class Main {
     private static Escenario escenAct;
 
     private static Opciones opciones;
+    //   private static String[][] matriz;
 
+    public static LinkedHashMap<String, Escenario> escenaMap = new LinkedHashMap<>();
 
-
-
-
-   public static LinkedHashMap<String, Escenario> escenaMap = new LinkedHashMap<>();
-
-
-    public static  LinkedHashMap<String, Integer> vidMap = new LinkedHashMap<>();
-
-
-
-
+    public static LinkedHashMap<String, Integer> vidMap = new LinkedHashMap<>();
 
     private static int vida;
 
     private static ArrayList<Integer> vidas = new ArrayList<>();
+    
+    
+        private static Escenario[][] escenarioMatrix;
 
+        
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
         Path path = Paths.get("src/txt/vivencia.txt");
@@ -47,7 +43,7 @@ public class Main {
 
         String[] partes = contenido.split("#");  // #corta al archivo al ver este caracter y elimina dicho simbolo, copiando el contenido que viene despues del simbolo en un indice del array de partes
 
-        for (int i = 0; i < partes.length; i++)
+      for (int i = 0; i < partes.length; i++)
         {
 
             if (partes[i].length() > 0)
@@ -65,7 +61,7 @@ public class Main {
 
                         String[] partesOpcion = escena[j].split("-");
 
-                        opciones = new Opciones( partesOpcion[1].trim());
+                        opciones = new Opciones(partesOpcion[1].trim());
 
                         opcionl.add(opciones);
 
@@ -98,14 +94,9 @@ public class Main {
             escenAct = escenaMap.get("INICIO");
 
         }
+   
 
-        while (!finalJuego)
-        {
-            int tiempo = 0;
-
-            escenAct.presentar(escenaMap, vidMap);
-
-        }
+        escenAct.presentar(escenaMap, vidMap);
 
     }
 

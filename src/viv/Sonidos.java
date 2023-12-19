@@ -45,6 +45,12 @@ public class Sonidos {
  
  public void difSonidos(String ell){
      
+     if(  !(ell.contains("patear") || ell.contains("puerta blanca")) ){
+         
+         
+         return;
+     }
+     
      
      
        if(ell.contains("patear")){
