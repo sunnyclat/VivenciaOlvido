@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package viv;
 
 import java.io.*;
@@ -20,22 +16,31 @@ public class Main {
 
     private static Opciones opciones;
 
+    private static LinkedHashMap<String, Escenario> escenaMap = new LinkedHashMap<>();
 
-
-
-
-   public static LinkedHashMap<String, Escenario> escenaMap = new LinkedHashMap<>();
-
-
-    public static  LinkedHashMap<String, Integer> vidMap = new LinkedHashMap<>();
-
-
-
-
+    private static LinkedHashMap<String, Integer> vidMap = new LinkedHashMap<>();
 
     private static int vida;
 
     private static ArrayList<Integer> vidas = new ArrayList<>();
+
+    private static Escenario[][] escenarioMatrix;
+
+    public static LinkedHashMap<String, Escenario> getEscenaMap() {
+        return escenaMap;
+    }
+
+    public static void setEscenaMap(LinkedHashMap<String, Escenario> escenaMap) {
+        Main.escenaMap = escenaMap;
+    }
+
+    public static LinkedHashMap<String, Integer> getVidMap() {
+        return vidMap;
+    }
+
+    public static void setVidMap(LinkedHashMap<String, Integer> vidMap) {
+        Main.vidMap = vidMap;
+    }
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
@@ -65,7 +70,7 @@ public class Main {
 
                         String[] partesOpcion = escena[j].split("-");
 
-                        opciones = new Opciones( partesOpcion[1].trim());
+                        opciones = new Opciones(partesOpcion[1].trim());
 
                         opcionl.add(opciones);
 
@@ -85,6 +90,7 @@ public class Main {
                 {
 
                     vidMap.put(partesEscen[0], vidas.get(x));
+
                 }
 
             }
@@ -99,13 +105,7 @@ public class Main {
 
         }
 
-        while (!finalJuego)
-        {
-            int tiempo = 0;
-
-            escenAct.presentar(escenaMap, vidMap);
-
-        }
+        escenAct.presentar(escenaMap, vidMap);
 
     }
 

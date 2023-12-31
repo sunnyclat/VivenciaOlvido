@@ -1,12 +1,9 @@
-
 package viv;
+
 public class Personaje {
 
     private int vida;
 
-    
-    
-    
     public Personaje() {
 
         this.vida = 100;
@@ -20,13 +17,9 @@ public class Personaje {
     }
 
     public void setVida(int vida) {
-        
-     
-        
-        this.vida = vida;  
-            
 
-     
+        this.vida = vida;
+
     }
 
     public String getEstado() {

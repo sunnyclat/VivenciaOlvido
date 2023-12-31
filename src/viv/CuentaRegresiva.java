@@ -19,12 +19,11 @@ import javax.swing.SwingUtilities;
  *
  * @author samuel ludueña 2021
  */
-public class CuentaRegresiva implements Runnable {
+public class CuentaRegresiva extends Thread implements Runnable {
 
     private int tiempo;
     private JLabel label;
-private JPanel panel;
-
+    private JPanel panel;
 
     public CuentaRegresiva(int tiempo, JLabel label) {
         this.tiempo = tiempo;
@@ -32,32 +31,70 @@ private JPanel panel;
 
     }
 
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
+
+    public JLabel getLabel() {
+        return label;
+    }
+
+    public void setLabel(JLabel label) {
+        this.label = label;
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+    }
+
     @Override
     public void run() {
-        while (tiempo >= 0) {
+        while (tiempo >= 0)
+        {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
                     label.setText(Integer.toString(tiempo));
-                }
-                
-                
-          
 
-                
+                }
+
             });
-   
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
+
+            //cada segundo va disminuyendo un numero y lo pasa al label
+            try
+            {
+
+                sleep(1000);
+
+            } catch (InterruptedException ex)
+            {
+
+                currentThread().interrupt();
+                return;
             }
 
             tiempo--;
+
         }
 
     }
-    
 
-    
+    public void interrumpir() {
+
+        label.setText(Integer.toString(0));
+
+        System.out.println("interrumpir");
+
+        interrupt(); // Interrumpir el hilo
+
+    }
+
 }
