@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package viv;
 
 import java.io.*;
@@ -19,20 +15,33 @@ public class Main {
     private static Escenario escenAct;
 
     private static Opciones opciones;
-    //   private static String[][] matriz;
 
-    public static LinkedHashMap<String, Escenario> escenaMap = new LinkedHashMap<>();
+    private static LinkedHashMap<String, Escenario> escenaMap = new LinkedHashMap<>();
 
-    public static LinkedHashMap<String, Integer> vidMap = new LinkedHashMap<>();
+    private static LinkedHashMap<String, Integer> vidMap = new LinkedHashMap<>();
 
     private static int vida;
 
     private static ArrayList<Integer> vidas = new ArrayList<>();
-    
-    
-        private static Escenario[][] escenarioMatrix;
 
-        
+    private static Escenario[][] escenarioMatrix;
+
+    public static LinkedHashMap<String, Escenario> getEscenaMap() {
+        return escenaMap;
+    }
+
+    public static void setEscenaMap(LinkedHashMap<String, Escenario> escenaMap) {
+        Main.escenaMap = escenaMap;
+    }
+
+    public static LinkedHashMap<String, Integer> getVidMap() {
+        return vidMap;
+    }
+
+    public static void setVidMap(LinkedHashMap<String, Integer> vidMap) {
+        Main.vidMap = vidMap;
+    }
+
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
         Path path = Paths.get("src/txt/vivencia.txt");
@@ -43,7 +52,7 @@ public class Main {
 
         String[] partes = contenido.split("#");  // #corta al archivo al ver este caracter y elimina dicho simbolo, copiando el contenido que viene despues del simbolo en un indice del array de partes
 
-      for (int i = 0; i < partes.length; i++)
+        for (int i = 0; i < partes.length; i++)
         {
 
             if (partes[i].length() > 0)
@@ -81,6 +90,7 @@ public class Main {
                 {
 
                     vidMap.put(partesEscen[0], vidas.get(x));
+
                 }
 
             }
@@ -94,7 +104,6 @@ public class Main {
             escenAct = escenaMap.get("INICIO");
 
         }
-   
 
         escenAct.presentar(escenaMap, vidMap);
 

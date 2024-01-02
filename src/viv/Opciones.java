@@ -1,6 +1,5 @@
 package viv;
 
-
 public class Opciones {
 
     String descripcion;
@@ -8,10 +7,6 @@ public class Opciones {
     public Opciones(String descripcion) {
 
         this.descripcion = descripcion;
-
-    }
-
-    public Opciones() {
 
     }
 

@@ -22,14 +22,37 @@ import javax.swing.SwingUtilities;
 public class CuentaRegresiva extends Thread implements Runnable {
 
     private int tiempo;
-    public JLabel label;
+    private JLabel label;
     private JPanel panel;
 
-//private Thread contador;
     public CuentaRegresiva(int tiempo, JLabel label) {
         this.tiempo = tiempo;
         this.label = label;
 
+    }
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
+
+    public JLabel getLabel() {
+        return label;
+    }
+
+    public void setLabel(JLabel label) {
+        this.label = label;
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
     }
 
     @Override
@@ -44,19 +67,16 @@ public class CuentaRegresiva extends Thread implements Runnable {
                 }
 
             });
+
             //cada segundo va disminuyendo un numero y lo pasa al label
             try
             {
-                //    Thread.sleep(1000);
-                //  contador.sleep(1000);
 
                 sleep(1000);
 
             } catch (InterruptedException ex)
             {
-                //     ex.printStackTrace();
 
-                //   Thread.currentThread().interrupt(); // Restaurar la bandera de interrupción
                 currentThread().interrupt();
                 return;
             }
@@ -68,9 +88,10 @@ public class CuentaRegresiva extends Thread implements Runnable {
     }
 
     public void interrumpir() {
-        //     label.setText("");
 
         label.setText(Integer.toString(0));
+
+        System.out.println("interrumpir");
 
         interrupt(); // Interrumpir el hilo
 
