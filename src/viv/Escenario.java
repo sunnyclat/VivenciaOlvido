@@ -37,6 +37,8 @@ public class Escenario extends JFrame {
 
     private int tiempoint;
 
+    private String descc = "";
+
     private HashMapNuevo hashmapNuev = new HashMapNuevo();
 
     private ArrayList<Opciones> opcl = new ArrayList<>();
@@ -46,6 +48,8 @@ public class Escenario extends JFrame {
     private LinkedList<String> titulos = new LinkedList<>();
 
     private LinkedList<String> reg = new LinkedList<>();
+
+    private LinkedList<String> regOp3 = new LinkedList<>();
 
     private CuentaRegresiva cr;
 
@@ -168,6 +172,14 @@ public class Escenario extends JFrame {
 
     public void setOpcl(ArrayList<Opciones> opcl) {
         this.opcl = opcl;
+    }
+
+    public void setOpMap(LinkedHashMap<String, String[]> opMap) {
+        this.opMap = opMap;
+    }
+
+    public LinkedHashMap<String, String[]> getOpMap() {
+        return opMap;
     }
 
     public void setOpcll(ArrayList<Opciones> opcll) {
@@ -390,8 +402,6 @@ public class Escenario extends JFrame {
         //PREPARACION DEL HASHMAP
         elec = hashmapNuev.PreparHash(part, opcastr, h, tit, b, opcl, opcll, descripcion, opMap, elec);
 
-        System.out.println("antes de entrar al if " + elec);
-
         //---COMIENZO DEL JUEGO 
         for (String key : opMap.keySet())
         {
@@ -429,7 +439,6 @@ public class Escenario extends JFrame {
 
             if ((modoint == 2 || modoint == 1) && flagTimer == true)
             {
-                //   ventanas.VentsPresSDentroJuego(inputField, initialListener, input2, labelTimer, cuentaRegresiva, time, this, opMap, inv, sonid, key,tiempoint);
 
                 ventanas.VentsPresSDentroJuego(inputField, initialListener, input2, cr, time, this, opMap, inv, sonid, key, tiempoint);
 
@@ -455,170 +464,154 @@ public class Escenario extends JFrame {
 
             }
 
-            //flag para que no termine el buble 
-            error = true;
-
-            while (error)
+            //--ANTES DE MOSTRAR LAS DECISIONES A TOMAR, PREPARAMOS EL CODIGO POR SI HAY UNA TERCERA DECISIONES A ELEGIR
+            //si no existe una tercera opcion, el string ira con un punto para no generar problemas. Si no hay un punto y hay texto nos aparecera la tercera opcion a usar
+            if (!(opMap.get(key)[2].contains(".")))
             {
 
-                //--ANTES DE MOSTRAR LAS DECISIONES A TOMAR, PREPARAMOS EL CODIGO POR SI HAY UNA TERCERA DECISIONES A ELEGIR
-                //si no existe una tercera opcion, el string ira con un punto para no generar problemas. Si no hay un punto y hay texto nos aparecera la tercera opcion a usar
-                if (!(opMap.get(key)[2].contains(".")))
-                {
+                blanc = "[Opcion 3] ";
 
-                    blanc = "[Opcion 3] ";
-                }
+            } else
+            {
 
-                //--SIGUIENDO CON LA CUARTA VENTANA, DECISIONES A TOMAR POR EL JUGADOR.     
-                opss = "<html>" + "<br/>" + dec + "<br/>" + "INVENTARIO: " + inv + "<br/>" + "<br/>" + "[0pcion 1]    " + opMap.get(key)[0] + "<br/>" + "[Opcion 2]  " + opMap.get(key)[1] + "<br/>" + blanc + opMap.get(key)[2] + "</html>";
+                blanc = "";
+            }
 
-                //--CONTRARRELOJ EN LAS DECISIONES PARA MODO DE JUEGO 1 Y 2
-                if (modoint == 1 || modoint == 2)
-                {
+            //--SIGUIENDO CON LA CUARTA VENTANA, DECISIONES A TOMAR POR EL JUGADOR.     
+            opss = "<html>" + "<br/>" + dec + "<br/>" + "INVENTARIO: " + inv + "<br/>" + "<br/>" + "[0pcion 1]    " + opMap.get(key)[0] + "<br/>" + "[Opcion 2]  " + opMap.get(key)[1] + "<br/>" + blanc + opMap.get(key)[2] + "</html>";
 
-                    tiemp.timer(this, key, opMap, ell, flagTimer, inputField, label, initialListener, sonid, modoint, modoint, cr);
+            //--CONTRARRELOJ EN LAS DECISIONES PARA MODO DE JUEGO 1 Y 2
+            if (modoint == 1 || modoint == 2)
+            {
 
-                }
-                //--PROGRESION DEL JUEGO ANUNCIANDO USO DE ELEMENTO NECESARIO PARA AVANZAR A TRAVES DE DICHA DECISION TOMADA
+                tiemp.timer(this, key, opMap, ell, flagTimer, inputField, label, initialListener, sonid, modoint, modoint, cr);
+
+            }
+            //--PROGRESION DEL JUEGO ANUNCIANDO USO DE ELEMENTO NECESARIO PARA AVANZAR A TRAVES DE DICHA DECISION TOMADA
 //si en la descripcion se encuentra una palabra en mayuscula, esta palabra sera la de un ELEMENTO que necesitamos tener en el inventario para poder continuar a traves del LUGAR
 
-                if (desc.matches(".*[A-ZÁÉÍÓÚÜ].*"))
+            if (desc.matches(".*[A-ZÁÉÍÓÚÜ].*"))
+            {
+
+                List<String> pm = new ArrayList<>();
+
+                Pattern patron = Pattern.compile("\\b[A-ZÁÉÍÓÚÜ]+\\b");
+                Matcher palab = patron.matcher(desc);
+
+                //meto la palabra del ELEMENTO encontrado en el LUGAR y lo meto en un string con espacios para evitar inconvenientes futuros
+                while (palab.find())
                 {
 
-                    List<String> pm = new ArrayList<>();
+                    pg = palab.group().toLowerCase();
 
-                    Pattern patron = Pattern.compile("\\b[A-ZÁÉÍÓÚÜ]+\\b");
-                    Matcher palab = patron.matcher(desc);
+                    pm.add(pg);
 
-                    //meto la palabra del ELEMENTO encontrado en el LUGAR y lo meto en un string con espacios para evitar inconvenientes futuros
-                    while (palab.find())
+                }
+
+                String pp = String.join(" ", pm);
+
+//si el INVENTARIO CONTIENE el ELEMENTO que necesitamos, proseguiremos con el juego, sino  saldra un cartel que no tenemos el elemento. 
+                if (inv.contains(pp))
+                {
+
+                    invImborrableLugares.add(pp);
+
+                    for (String elem : invImborrableLugares)
                     {
 
-                        pg = palab.group().toLowerCase();
+                        if (inv.contains(elem))
+                        {
 
-                        pm.add(pg);
+                            inv.remove(elem);
+
+                        }
 
                     }
 
-                    String pp = String.join(" ", pm);
-
-//si el INVENTARIO CONTIENE el ELEMENTO que necesitamos, proseguiremos con el juego, sino  saldra un cartel que no tenemos el elemento. 
-                    //      if (this.inv.contains(pp) || invInborrable.contains(pp))
-                    if (inv.contains(pp))
+                    //CUARTA VENTANA PARA USO DE ELEMENTO REQUERIDO. Entramos en las opciones dentro de la escena de la decision tomada 
+                    //--INGRESO POR LA DECISION TOMADA USANDO EL ELEMENTO REQUERIDO PARA MODO DE JUEGO 2
+                    //entramos en las opciones dentro de la escena a la cual entramos con el elemento de inventario en cuestion
+                    if (modoint == 2)
                     {
 
-                        invImborrableLugares.add(pp);
+                        String opciones = "<html>" + dec + "\n" + "INVENTARIO: "
+                                + inv + "\n" + "\n" + "[0pcion 1]    "
+                                + opMap.get(key)[0] + "\n" + "[Opcion 2]  " + opMap.get(key)[1] + "\n" + blanc + opMap.get(key)[2] + "</html>";
 
-                        for (String elem : invImborrableLugares)
-                        {
+                        decis.elecConySinElem2(opciones, inputField, label, ell, initialListener, sonid, this);
 
-                            if (inv.contains(elem))
-                            {
+                    }
 
-                                inv.remove(elem);
-
-                            }
-
-                        }
-
-                        //CUARTA VENTANA PARA USO DE ELEMENTO REQUERIDO. Entramos en las opciones dentro de la escena de la decision tomada 
-                        //--INGRESO POR LA DECISION TOMADA USANDO EL ELEMENTO REQUERIDO PARA MODO DE JUEGO 2
-                        //entramos en las opciones dentro de la escena a la cual entramos con el elemento de inventario en cuestion
-                        if (modoint == 2)
-                        {
-
-                            String opciones = "<html>" + dec + "\n" + "INVENTARIO: "
-                                    + inv + "\n" + "\n" + "[0pcion 1]    "
-                                    + opMap.get(key)[0] + "\n" + "[Opcion 2]  " + opMap.get(key)[1] + "\n" + blanc + opMap.get(key)[2] + "</html>";
-
-                            decis.elecConySinElem2(opciones, inputField, label, ell, initialListener, sonid, this);
-
-                        }
-
-                        //--INGRESO POR LA DECISION TOMADA USANDO EL ELEMENTO REQUERIDO PARA MODO DE JUEGO 1 Y 3 
-                        if (modoint == 1 || modoint == 3)
-                        {
-                            ell = decis.elecConySinElem13(modoint, key, inputField, sonid, ell, opcs, dec, opMap, inv, label, initialListener, blanc, labelTimer, flagTimer, modoint, this);
-                        }
-
-                    } else
-                    {  //--MENSAJE DE ERROR POR NO DISPONER DE ELEMENTO REQUERIDO
-
-                        //mensaje de no disponer de elemento requerido para avanzar por la decision tomada.
-                        JOptionPane.showMessageDialog(this, "EL INVENTARIO NO POSEE DICHO ELEMENTO PARA PROSEGUIR");
-
-                        //Utilizamos un array con un registro de decisiones tomadas en donde iremos a la penultima para poder proseguir con el juego
-                        ell = reg.get(reg.size() - 2);
-
-                        key = ell;
-
-                        //truco pidiendo ventana 2 para ocasionar un error y tener la oportunidad de progresar el juego a traves de decisiones sin uso de elemento requerido 
-                        desc = Main.getEscenaMap().get(key).descripcion;
-
+                    //--INGRESO POR LA DECISION TOMADA USANDO EL ELEMENTO REQUERIDO PARA MODO DE JUEGO 1 Y 3 
+                    if (modoint == 1 || modoint == 3)
+                    {
+                        ell = decis.elecConySinElem13(modoint, key, inputField, sonid, ell, opcs, dec, opMap, inv, label, initialListener, blanc, labelTimer, flagTimer, modoint, this);
                     }
 
                 } else
+                {  //--MENSAJE DE ERROR POR NO DISPONER DE ELEMENTO REQUERIDO
 
+                    //mensaje de no disponer de elemento requerido para avanzar por la decision tomada.
+                    JOptionPane.showMessageDialog(this, "EL INVENTARIO NO POSEE DICHO ELEMENTO PARA PROSEGUIR");
+
+                    //Utilizamos un array con un registro de decisiones tomadas en donde iremos a la penultima para poder proseguir con el juego
+                    ell = reg.get(reg.size() - 2);
+
+                    key = ell;
+
+                    //truco pidiendo ventana 2 para ocasionar un error y tener la oportunidad de progresar el juego a traves de decisiones sin uso de elemento requerido 
+                    desc = Main.getEscenaMap().get(key).descripcion;
+
+                }
+
+            } else
+
+            {
+
+                //CUARTA VENTANA SIN USO DE ELEMENTO REQUERIDO. Entramos en las opciones dentro de la escena de la decision tomada 
+                //--PROGRESION DEL JUEGO A TRAVES DE DECISIONES SIN USO DE ELEMENTO REQUERIDO EN MODO 1 O 3
+                //si el jugador eligio el modo 1, al finalizar el contrarreloj, este eligira una opcion aleatoriamente.
+                if (modoint == 1 || modoint == 3)
                 {
 
-                    //CUARTA VENTANA SIN USO DE ELEMENTO REQUERIDO. Entramos en las opciones dentro de la escena de la decision tomada 
-                    //--PROGRESION DEL JUEGO A TRAVES DE DECISIONES SIN USO DE ELEMENTO REQUERIDO EN MODO 1 O 3
-                    //si el jugador eligio el modo 1, al finalizar el contrarreloj, este eligira una opcion aleatoriamente.
-                    if (modoint == 1 || modoint == 3)
-                    {
+                    ell = decis.elecConySinElem13(modoint, key, inputField, sonid, ell, opcs, dec, opMap, inv, label, initialListener, blanc, labelTimer, flagTimer, modoint, this);
 
-                        ell = decis.elecConySinElem13(modoint, key, inputField, sonid, ell, opcs, dec, opMap, inv, label, initialListener, blanc, labelTimer, flagTimer, modoint, this);
+                }
 
-                    }
+                //--PROGRESION DEL JUEGO A TRAVES DE DECISIONES SIN USO DE ELEMENTO REQUERIDO EN MODO 2
+                if (modoint == 2)
+                {
+                    String opciones = "<html>" + opss + "<br/>" + "<br/>" + "Escriba su eleccion </html>";
+                    decis.elecConySinElem2(opciones, inputField, label, ell, initialListener, sonid, this);
+                }
 
-                    //--PROGRESION DEL JUEGO A TRAVES DE DECISIONES SIN USO DE ELEMENTO REQUERIDO EN MODO 2
-                    if (modoint == 2)
-                    {
-                        String opciones = "<html>" + opss + "<br/>" + "<br/>" + "Escriba su eleccion </html>";
-                        decis.elecConySinElem2(opciones, inputField, label, ell, initialListener, sonid, this);
-                    }
+            }   //--FIN DE INGRESOS A TRAVES DE DECISIONES SIN Y CON ELEMENTOS REQUERIDOS
 
-                }   //--FIN DE INGRESOS A TRAVES DE DECISIONES SIN Y CON ELEMENTOS REQUERIDOS
-
-                //------------------
+            //------------------
 //se toma la opcion ingresada, y se transforma en mayuscula para que pueda compararse con el array de titulos (palabra de inicio de escena)
 //y asi el usuario puede libremente escribir la palabra tanto en mayuscula como en minuscula
-                String ellm = ell.toUpperCase();
+            String ellm = ell.toUpperCase();
 
-                //tenemos en ell la palabra elegida por el usuario en mayuscula y por otro lado ellm con la palabra en minuscula
-                // esta ultima en minuscula la guardamos en elec que es variable global
-                elec = ellm;
+            //tenemos en ell la palabra elegida por el usuario en mayuscula y por otro lado ellm con la palabra en minuscula
+            // esta ultima en minuscula la guardamos en elec que es variable global
+            elec = ellm;
 
-                //registro de elecciones tomadas las cuales me ayudaran a volver de una opcion en donde no teniamos dicho elemento para proseguir para asi
-                // que el usuario pueda continuar con otras opciones posibles.
-                reg.add(elec);
+            //registro de elecciones tomadas las cuales me ayudaran a volver de una opcion en donde no teniamos dicho elemento para proseguir para asi
+            // que el usuario pueda continuar con otras opciones posibles.
+            reg.add(elec);
 
-                //si el mapa contiene una palabra que no es igual a la palabra ingresada por el usuario no entrada en esta opcion
-                // y saltara en la siguiente en donde nos notifica no entender la opcion ingresada.
-                if ((opMap.get(key)[0]).contains(ellm) || (opMap.get(key)[1]).contains(ellm) || (opMap.get(key)[2]).contains(ellm))
-                {
+            if (!(invImborrableVidasLugares.contains(elec)))
+            {
 
-                    //al ingresarse una opcion correcta, se desactiva el flag para que el loop while vuelva al principio y siga el programa.
-                    error = false;
-
-                }
-
-                if (!(invImborrableVidasLugares.contains(elec)))
-                {
-
-                    System.out.println("entre a la vida");
-
-                    p.setVida(v.get(elec) + p.getVida());
-
-                }
-
-                invImborrableVidasLugares.add(elec);
-
-                ArrayList<String> res = new ArrayList<>(new LinkedHashSet<>(invImborrableVidasLugares));
-
-                invImborrableVidasLugares = res;
+                p.setVida(v.get(elec) + p.getVida());
 
             }
+
+            invImborrableVidasLugares.add(elec);
+
+            ArrayList<String> res = new ArrayList<>(new LinkedHashSet<>(invImborrableVidasLugares));
+
+            invImborrableVidasLugares = res;
 
         }
 

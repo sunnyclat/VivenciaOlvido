@@ -7,9 +7,10 @@
 <MIRAR-Me pongo a MIRAR las estrellas
 
 #MIRAR/miro el cielo/0
-<-.
-<-.
-<-.
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+
 
 #PATEAR/la taberna esta muy oscura y me corto con una astilla de la puerta, pero en la entrada encontramos ademas unas 'cizallas'/-10
 <AVANZAMOS-Nos adentramos en la oscuridad y AVANZAMOS
@@ -108,38 +109,37 @@
 <-.
 
 #PIENSO/me pongo a pensar/0
-<-.
-<-.
-<-.
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
 
 
 #DUERMO/me pongo a dormir/0
-<-.
-<-.
-<-.
-
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
 
 #SIENTO/me siento/0
-<-.
-<-.
-<-.
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
 
 
 #SIGILO/me deslizo/0
-<-.
-<-.
-<-.
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
 
 #PARO/paro/0
-<-.
-<-.
-<-.
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
 
 
 #DEDO/hago dedo/0
-<-.
-<-.
-<-.
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
 
 
 #POLLO/como/10
@@ -148,12 +148,12 @@
 <-.
 
 #PLAZA/vamos a la plaza del pueblo/0
-<-.
-<-.
-<-.
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
 
 
 #CAMA/me acuesto/0
-<-.
-<-.
-<-.
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
