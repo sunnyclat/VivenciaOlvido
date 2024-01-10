@@ -15,19 +15,19 @@
 #PATEAR/la taberna esta muy oscura y me corto con una astilla de la puerta, pero en la entrada encontramos ademas unas 'cizallas'/-10
 <AVANZAMOS-Nos adentramos en la oscuridad y AVANZAMOS
 <VOLVER-Decidimos VOLVER al pueblo
-<-.
+<NOT-NOT
 
 
 
 #VOLVER/volvemos al pueblo/0
 <CERCA-Observo a una CERCA que encuentro por alli
 <PATEAR-Nos arrepentimos y decidimos volver a PATEAR esa puerta
-<-.
+<NOT-NOT
 
 #CERCA/observo que hay una cerca y algo dentro pero para ello necesitaria unas CIZALLAS/0
 <ENTRO-Paso por la cerca y ENTRO
 <VOLVER-Nos arrepentimos y decidimos VOLVER al pueblo
-<-.
+<NOT-NOT
 
 #ENTRO/encontramos un 'bidon de gasolina'/0
 <PATEAR-Nos arrepentimos y decidimos volver a PATEAR esa puerta
@@ -37,32 +37,32 @@
 #AVANZAMOS/usamos una 'linterna'/0
 <ALUMBRAMOS-Apuntamos con la linterna y ALUMBRAMOS bien
 <VOLVER-Nos arrepentimos y decidimos VOLVER al pueblo
-<-.
+<NOT-NOT
 
 
 
 #IRME/me acobarde/0
 <PIENSO-PIENSO en lo que me pudo haber pasado
 <DUERMO-voy a ver si DUERMO en casa
-<-.
+<NOT-NOT
 
 
 #VUELVO/retorno a casa/0
 <POLLO-me voy a preparar una buena pata de POLLO
 <CAMA-me voy directamente a dormir a mi CAMA
-<-.
+<NOT-NOT
 
 
 #CAMINO/vuelvo a casa/0
 <SIGILO-me topo con algo misterioso y prefiero ir en modo SIGILO
 <SIENTO-prefiero quedarme quieto y ver donde me SIENTO
-<-.
+<NOT-NOT
 
 
 #CORRO/no llego a casa porque me canso/0
 <PARO-prefiero parar un poco asi que me tomo un respiro y PARO
 <DEDO-hago DEDO para ver si alguien me puede alcanzar a casa
-<-.
+<NOT-NOT
 
 #ALUMBRAMOS/vemos algo/0
 <ALUMBRO-ALUMBRO y encuentro un medikit
@@ -72,12 +72,12 @@
 #ALUMBRO/me curo con el medikit/5
 <SIGO-SIGO y veo un pasillo
 <INVESTIGO-Entro a examinar e INVESTIGO mejor el cuarto
-<-.
+<NOT-NOT
 
 #INVESTIGO/veo unas cajas en el piso y encuentro una 'llave roja'/0
 <SIGO-SIGO y veo un pasillo
 <MIRO-MIRO mas el lugar
-<-.
+<NOT-NOT
 
 #SIGO/encuentro un pasillo/0
 <PUERTA BLANCA-Vemos una PUERTA BLANCA e intentamos abrirla
@@ -106,7 +106,7 @@
 #VOLVEMOS/nos arrepentimos/0
 <DUERMO-voy a ver si DUERMO en casa
 <PIENSO-PIENSO en lo que me pudo haber pasado
-<-.
+<NOT-NOT
 
 #PIENSO/me pongo a pensar/0
 <PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
@@ -145,7 +145,7 @@
 #POLLO/como/10
 <PATEAR-Decido volver al pueblo y PATEAR la puerta de la taberna nuevamente
 <PLAZA-Decido ir a la PLAZA del pueblo
-<-.
+<NOT-NOT
 
 #PLAZA/vamos a la plaza del pueblo/0
 <PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
@@ -157,3 +157,9 @@
 <PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
 <PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
 <PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+
+
+#NOT/decidimos intentar abrir la puerta pero esta no abre/0
+<PATEAR-Al PATEAR la puerta se rompe en mil pedazos 
+<VOLVER-Nos retiramos y decidimos VOLVER al pueblo
+<MIRAR-Me pongo a MIRAR las estrellas

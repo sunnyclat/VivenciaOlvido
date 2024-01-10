@@ -72,7 +72,7 @@ public class Ventanas {
 
         } while (!(input2.matches("s")));
 
-        inputField.setText("");
+
 
         inputField.removeActionListener(initialListener);
 
@@ -142,7 +142,7 @@ public class Ventanas {
 
         } while (!(input2.matches("s")));
 
-        inputField.setText("");
+   
 
         inputField.removeActionListener(initialListener);
 

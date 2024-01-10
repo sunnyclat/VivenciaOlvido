@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -85,7 +87,11 @@ public class Aleatorizar {
 
         escenario.setEll(options[rand.nextInt(options.length)]); // selecciona una opción aleatoria del arreglo
 
-        // System.out.println("elle en aleatorizacion " + elle);
+        escenario.setOkAlea(true);
+
+        escenario.setPalabAlea(escenario.getEll());
+
+        //  System.out.println("aleator "  +  escenario.palabAlea );
     }
 
 }

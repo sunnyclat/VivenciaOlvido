@@ -23,13 +23,13 @@ public class Decisiones {
 
     private int opc = 0;
 
-    private String input2 = "";
+    private String palab;
 
     private boolean crash = false;
 
-    private boolean flagTimer = false;
+    private String opp1, opp2, opp3;
 
-    private Tiempo tiemp = new Tiempo();
+    private boolean okAlea;
 
     public int minput(JTextField inputField, JLabel labelTimer, ActionListener initialListener, String ell, boolean flagTimer,
             int opcint, Sonidos sonid, JLabel label, String opcs, String blanc,
@@ -91,36 +91,8 @@ public class Decisiones {
 
         opc = 0;
 
-
-        /*
-        ArrayList<String> po = new ArrayList<>();
-
-        escenario.setEll(opMap.get(key)[2]);
-
-        Pattern pat = Pattern.compile("\\b[A-ZÁÉÍÓÚÜ]+\\b");
-        Matcher palabr = pat.matcher(escenario.getEll());
-
-        String pq = "";
-
-        while (palabr.find())
+        if (escenario.getOpMap().get(key)[2].contains("NOT"))
         {
-
-            pq = palabr.group().toLowerCase();
-
-            po.add(pq);
-
-        }
-
-        String ppp = String.join(" ", po);
-
-        escenario.setEll(ppp);
-
-        po.remove(pq);
-         */
-        if (escenario.getOpMap().get(key)[2].contains("."))
-        {
-
-            System.out.println("crash");
 
             crash = true;
 
@@ -165,11 +137,10 @@ public class Decisiones {
                 }
             };
 
-        } while (!(opc >= 1 && opc <= 3) || (crash == true && opc == 3));
+            //      } while (!(opc >= 1 && opc <= 3) || (crash == true && opc == 3));
+        } while (!(opc >= 1 && opc <= 3) && (escenario.getEll().isEmpty()) || (crash == true && opc == 3));
 
         crash = false;
-
-        inputField.setText("");
 
         inputField.removeActionListener(initialListener);
 
@@ -177,11 +148,84 @@ public class Decisiones {
     }
 
     public void elecConySinElem2(String opciones, JTextField inputField,
-            JLabel label, String ellst, ActionListener initialListener, Sonidos sonid, Escenario escenario) {
+            JLabel label, String ellst, ActionListener initialListener, Sonidos sonid, Escenario escenario, String key) {
 
         label.setText(opciones);
 
         escenario.setEll("");
+
+        palab = "";
+
+        opp1 = "";
+        opp2 = "";
+        opp3 = "";
+
+        String op1 = escenario.getOpMap().get(key)[0];
+        String op2 = escenario.getOpMap().get(key)[1];
+        String op3 = escenario.getOpMap().get(key)[2];
+
+        System.out.println("mapa " + escenario.getOpMap().get(key)[2]);
+
+        Pattern pat = Pattern.compile("\\b[A-ZÁÉÍÓÚÜ]+\\b");
+
+        Matcher matcher1 = pat.matcher(op1);
+        Matcher matcher2 = pat.matcher(op2);
+        Matcher matcher3 = pat.matcher(op3);
+
+        StringBuilder output1StringBuilder = new StringBuilder();
+        StringBuilder output2StringBuilder = new StringBuilder();
+        StringBuilder output3StringBuilder = new StringBuilder();
+
+        while (matcher1.find())
+        {
+            String wordInUpperCase = matcher1.group();
+
+            String wordInLowerCase = wordInUpperCase.toLowerCase();
+
+            output1StringBuilder.append(wordInLowerCase).append(" ");
+
+        }
+
+        String out1 = output1StringBuilder.toString().trim();
+
+        while (matcher2.find())
+        {
+            String wordInUpperCase = matcher2.group();
+
+            String wordInLowerCase = wordInUpperCase.toLowerCase();
+
+            output2StringBuilder.append(wordInLowerCase).append(" ");
+
+        }
+
+        String out2 = output2StringBuilder.toString().trim();
+
+        while (matcher3.find())
+        {
+            String wordInUpperCase = matcher3.group();
+
+            String wordInLowerCase = wordInUpperCase.toLowerCase();
+
+            output3StringBuilder.append(wordInLowerCase).append(" ");
+
+        }
+
+        String out3 = output3StringBuilder.toString().trim();
+
+        opp1 = out1;
+        opp2 = out2;
+        opp3 = out3;
+
+        if (escenario.getOpMap().get(key)[2].contains("NOT"))
+        {
+
+            crash = true;
+            opp3 = ".";
+        }
+
+        System.out.println("opp1 " + opp1);
+        System.out.println("opp2 " + opp2);
+        System.out.println("opp3 " + opp3);
 
         do
         {
@@ -199,12 +243,17 @@ public class Decisiones {
                             try
                             {
 
-                                escenario.setEll(inputField.getText());
+                                palab = inputField.getText();
+
+                                if (okAlea == true)
+                                {
+
+                                    escenario.setEll(palab);
+
+                                }
 
                             } catch (NumberFormatException ex)
                             {
-
-                                inputField.setText("");
 
                             }
 
@@ -215,10 +264,6 @@ public class Decisiones {
                         @Override
                         protected void done() {
 
-                            String textoIngresado = inputField.getText();
-
-                            inputField.setText("");
-
                         }
                     };
 
@@ -227,7 +272,26 @@ public class Decisiones {
 
             };
 
-        } while ((escenario.getEll().isEmpty()));
+            if (!escenario.getPalabAlea().isEmpty())
+            {
+
+                palab = escenario.getEll();
+
+            }
+
+        } while ((!((palab.matches(opp1))
+                || (palab.matches(opp2)) || (palab.matches(opp3)) && crash == false)) && escenario.getPalabAlea().isEmpty());
+
+        System.out.println("valor palab fuera " + palab);
+
+        escenario.setEll(palab);
+
+        okAlea = false;
+        crash = false;
+
+        palab = "";
+
+        escenario.setPalabAlea("");
 
         inputField.removeActionListener(initialListener);
 
@@ -238,6 +302,13 @@ public class Decisiones {
     public int minputmod1(String key, int modoint, JTextField inputField, ActionListener initialListener, String elle, int opcint, Boolean flagTimerr, Escenario escenario) {
 
         opc = 0;
+
+        if (escenario.getOpMap().get(key)[2].contains("NOT"))
+        {
+
+            crash = true;
+
+        }
 
         do
         {
@@ -278,11 +349,9 @@ public class Decisiones {
                 }
             };
 
-        } while (!(opc >= 1 && opc <= 3) && (escenario.getEll().isEmpty()));
+        } while (!(opc >= 1 && opc <= 3) && (escenario.getEll().isEmpty()) || (crash == true && opc == 3));
 
-        flagTimer = true;
-
-        inputField.setText("");
+        crash = false;
 
         inputField.removeActionListener(initialListener);
 

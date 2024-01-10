@@ -46,7 +46,7 @@ public class Tiempo {
                 escenario.setFlagTimer(true);
 
                 //el numerito del temporizador que ira en decremento
-                escenario.setTiempoint(iniciarCuentaRegresiva(escenario, 8));
+                escenario.setTiempoint(iniciarCuentaRegresiva(escenario, 3));
 
                 //tiempo que tardara en cerrarse para luego ejecutar lo que esta dentro del metodo.
                 escenario.setTime(new Timer(escenario.getTiempoint() * 1000, new ActionListener() {

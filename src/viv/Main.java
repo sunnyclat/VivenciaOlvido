@@ -24,8 +24,6 @@ public class Main {
 
     private static ArrayList<Integer> vidas = new ArrayList<>();
 
-    private static Escenario[][] escenarioMatrix;
-
     public static LinkedHashMap<String, Escenario> getEscenaMap() {
         return escenaMap;
     }

@@ -37,8 +37,6 @@ public class Escenario extends JFrame {
 
     private int tiempoint;
 
-    private String descc = "";
-
     private HashMapNuevo hashmapNuev = new HashMapNuevo();
 
     private ArrayList<Opciones> opcl = new ArrayList<>();
@@ -49,7 +47,9 @@ public class Escenario extends JFrame {
 
     private LinkedList<String> reg = new LinkedList<>();
 
-    private LinkedList<String> regOp3 = new LinkedList<>();
+    private String palabAlea = "";
+
+   private boolean okAlea = false;
 
     private CuentaRegresiva cr;
 
@@ -91,30 +91,19 @@ public class Escenario extends JFrame {
 
     private String descInfo;
 
-    private int descInt;
-
     private boolean flagTimer = false;
-
-    private String inputdec;
 
     private Personaje p = new Personaje();
 
-    private JTextArea chatArea;
     private JTextField inputField;
     private String input2 = "";
-    private int inputint2;
-    private String input3 = "";
 
     private Ventanas ventanas = new Ventanas();
     private Decisiones decis = new Decisiones();
 
-    private boolean dentro = false;
-
     private String modostr;
 
     private JLabel label;
-
-    private int ti;
 
     public void setTime(Timer time) {
         this.time = time;
@@ -131,8 +120,6 @@ public class Escenario extends JFrame {
     public JLabel labelTimer;
 
     private ActionListener initialListener;
-
-    private boolean paso = false;
 
     public void setEll(String ell) {
         this.ell = ell;
@@ -234,6 +221,10 @@ public class Escenario extends JFrame {
         return pg;
     }
 
+    public boolean getFlagTimer() {
+        return flagTimer;
+    }
+
     public List<String> getInvImborrableElementos() {
         return invImborrableElementos;
     }
@@ -260,6 +251,22 @@ public class Escenario extends JFrame {
 
     public JLabel getLabelTimer() {
         return labelTimer;
+    }
+
+    public String getPalabAlea() {
+        return palabAlea;
+    }
+
+    public void setPalabAlea(String palabAlea) {
+        this.palabAlea = palabAlea;
+    }
+
+    public boolean isOkAlea() {
+        return okAlea;
+    }
+
+    public void setOkAlea(boolean okAlea) {
+        this.okAlea = okAlea;
     }
 
     public Escenario(String descripcion, ArrayList<Opciones> opcl) {
@@ -474,7 +481,7 @@ public class Escenario extends JFrame {
             } else
             {
 
-                blanc = "";
+                blanc = " ";
             }
 
             //--SIGUIENDO CON LA CUARTA VENTANA, DECISIONES A TOMAR POR EL JUGADOR.     
@@ -537,8 +544,7 @@ public class Escenario extends JFrame {
                         String opciones = "<html>" + dec + "\n" + "INVENTARIO: "
                                 + inv + "\n" + "\n" + "[0pcion 1]    "
                                 + opMap.get(key)[0] + "\n" + "[Opcion 2]  " + opMap.get(key)[1] + "\n" + blanc + opMap.get(key)[2] + "</html>";
-
-                        decis.elecConySinElem2(opciones, inputField, label, ell, initialListener, sonid, this);
+                        decis.elecConySinElem2(opciones, inputField, label, ell, initialListener, sonid, this, key);
 
                     }
 
@@ -582,7 +588,8 @@ public class Escenario extends JFrame {
                 if (modoint == 2)
                 {
                     String opciones = "<html>" + opss + "<br/>" + "<br/>" + "Escriba su eleccion </html>";
-                    decis.elecConySinElem2(opciones, inputField, label, ell, initialListener, sonid, this);
+
+                    decis.elecConySinElem2(opciones, inputField, label, ell, initialListener, sonid, this, key);
                 }
 
             }   //--FIN DE INGRESOS A TRAVES DE DECISIONES SIN Y CON ELEMENTOS REQUERIDOS
